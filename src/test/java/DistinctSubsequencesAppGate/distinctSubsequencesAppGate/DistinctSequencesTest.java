@@ -7,44 +7,58 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DistinctSequencesTest {
 
+    private CountDistinctSubsequences countDistinctSubsequences;
+
     @Test
     public void shouldReturnZeroGivenEmptySAndNonEmptyT() {
-        CountDistinctSubsequences countDistinctSubsequences = new CountDistinctSubsequences();
+        givenACountDistinctSubsequences();
 
-        String S = "";
-        String T = "a";
+        String sourceString = "";
+        String targetString = "a";
 
-        int result = countDistinctSubsequences.invoke(S, T);
+        int result = whenCountDistinctSubsequencesWith(sourceString, targetString);
 
-        assertEquals(0, result);
+        thenTheNumberOfSubsequencesIs(0, result);
 
     }
 
     @Test
     public void should_Return_1_Given_Non_Empty_S_And_empty_T() {
 
-        CountDistinctSubsequences countDistinctSubsequences = new CountDistinctSubsequences();
+        givenACountDistinctSubsequences();
 
-        String S = "a";
-        String T = "";
+        String sourceString = "a";
+        String targetString = "";
 
-        int result = countDistinctSubsequences.invoke(S, T);
+        int result = whenCountDistinctSubsequencesWith(sourceString, targetString );
 
-        assertEquals(1, result);
-
+        thenTheNumberOfSubsequencesIs(1, result);
     }
 
     @Test
     public void should_return_1_when_S_and_T_have_the_same_strings() {
-        CountDistinctSubsequences countDistinctSubsequences = new CountDistinctSubsequences();
+        givenACountDistinctSubsequences();
 
-        String S = "RabbitMq";
-        String T = "RabbitMq";
+        String sourceString = "RabbitMq";
+        String targetString = "RabbitMq";
 
-        int result = countDistinctSubsequences.invoke(S, T);
+        int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
 
         assertEquals(1, result);
 
     }
+
+    private void givenACountDistinctSubsequences() {
+        countDistinctSubsequences = new CountDistinctSubsequences();
+    }
+
+    private int whenCountDistinctSubsequencesWith(String S, String T) {
+        return this.countDistinctSubsequences.invoke(S, T);
+    }
+
+    private static void thenTheNumberOfSubsequencesIs(int subsequences, int result) {
+        assertEquals(subsequences, result);
+    }
+
 
 }
