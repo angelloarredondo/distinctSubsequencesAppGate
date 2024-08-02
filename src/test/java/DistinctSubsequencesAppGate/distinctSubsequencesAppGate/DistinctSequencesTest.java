@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DistinctSequencesTest {
 
     @Test
-    public void should_return_zero_given_empty_S_And_NonEmpty_T() {
+    public void shouldReturnZeroGivenEmptySAndNonEmptyT() {
         CountDistinctSubsequences countDistinctSubsequences = new CountDistinctSubsequences();
 
         String S = "";
@@ -17,6 +17,20 @@ public class DistinctSequencesTest {
         int result = countDistinctSubsequences.invoke(S, T);
 
         assertEquals(0, result);
+
+    }
+
+    @Test
+    public void should_Return_1_Given_Non_Empty_S_And_empty_T() {
+
+        CountDistinctSubsequences countDistinctSubsequences = new CountDistinctSubsequences();
+
+        String S = "a";
+        String T = "";
+
+        int result = countDistinctSubsequences.invoke(S, T);
+
+        assertEquals(1, result);
 
     }
 
