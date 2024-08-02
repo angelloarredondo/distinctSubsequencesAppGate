@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DistinctSequencesTest {
-
     private CountDistinctSubsequences countDistinctSubsequences;
 
     @Test
@@ -48,6 +47,20 @@ public class DistinctSequencesTest {
 
     }
 
+    @Test
+    public void should_return_Three_given_Rabbbit_and_Rabbit() {
+        givenACountDistinctSubsequences();
+
+        String sourceString = "rabbbit";
+        String targetString = "rabbit";
+
+        int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
+
+        assertEquals(3, result);
+
+    }
+
+
     private void givenACountDistinctSubsequences() {
         countDistinctSubsequences = new CountDistinctSubsequences();
     }
@@ -59,6 +72,4 @@ public class DistinctSequencesTest {
     private static void thenTheNumberOfSubsequencesIs(int subsequences, int result) {
         assertEquals(subsequences, result);
     }
-
-
 }
