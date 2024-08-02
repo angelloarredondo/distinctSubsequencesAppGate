@@ -43,8 +43,7 @@ public class DistinctSequencesTest {
 
         int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
 
-        assertEquals(1, result);
-
+        thenTheNumberOfSubsequencesIs(1, result);
     }
 
     @Test
@@ -56,8 +55,7 @@ public class DistinctSequencesTest {
 
         int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
 
-        assertEquals(3, result);
-
+        thenTheNumberOfSubsequencesIs(3, result);
     }
 
     @Test
@@ -69,7 +67,20 @@ public class DistinctSequencesTest {
 
         int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
 
-        assertEquals(5, result);
+        thenTheNumberOfSubsequencesIs(5, result);
+    }
+
+    @Test
+    public void shouldReturnThreeGivenPatternOfTwoConsecutiveLoginFailuresInLogEvents() {
+
+        givenACountDistinctSubsequences();
+
+        String sourceString = "LOGINFAILURELOGINSUCCESS";
+        String targetString = "LOGINFAILURE";
+
+        int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
+
+        thenTheNumberOfSubsequencesIs(2, result);
     }
 
     private void givenACountDistinctSubsequences() {
