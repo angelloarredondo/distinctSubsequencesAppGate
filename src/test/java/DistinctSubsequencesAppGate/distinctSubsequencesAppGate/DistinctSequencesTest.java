@@ -34,4 +34,17 @@ public class DistinctSequencesTest {
 
     }
 
+    @Test
+    public void should_return_1_when_S_and_T_have_the_same_strings() {
+        CountDistinctSubsequences countDistinctSubsequences = new CountDistinctSubsequences();
+
+        String S = "RabbitMq";
+        String T = "RabbitMq";
+
+        int result = countDistinctSubsequences.invoke(S, T);
+
+        assertEquals(1, result);
+
+    }
+
 }
