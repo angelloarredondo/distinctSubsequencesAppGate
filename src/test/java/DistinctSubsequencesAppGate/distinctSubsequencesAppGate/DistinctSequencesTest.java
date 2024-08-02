@@ -1,6 +1,7 @@
 package DistinctSubsequencesAppGate.distinctSubsequencesAppGate;
 
 import DistinctSubsequencesAppGate.application.CountDistinctSubsequences;
+import DistinctSubsequencesAppGate.domain.Sequence;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,8 +13,8 @@ public class DistinctSequencesTest {
     public void shouldReturnZeroGivenEmptySAndNonEmptyT() {
         givenACountDistinctSubsequences();
 
-        String sourceString = "";
-        String targetString = "a";
+        Sequence sourceString = new Sequence("");
+        Sequence targetString = new Sequence("a");
 
         int result = whenCountDistinctSubsequencesWith(sourceString, targetString);
 
@@ -26,8 +27,8 @@ public class DistinctSequencesTest {
 
         givenACountDistinctSubsequences();
 
-        String sourceString = "a";
-        String targetString = "";
+        Sequence sourceString = new Sequence("a");
+        Sequence targetString = new Sequence("");
 
         int result = whenCountDistinctSubsequencesWith(sourceString, targetString );
 
@@ -38,8 +39,8 @@ public class DistinctSequencesTest {
     public void should_return_1_when_S_and_T_have_the_same_strings() {
         givenACountDistinctSubsequences();
 
-        String sourceString = "RabbitMq";
-        String targetString = "RabbitMq";
+        Sequence sourceString = new Sequence("RabbitMq");
+        Sequence targetString = new Sequence("RabbitMq");
 
         int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
 
@@ -50,8 +51,8 @@ public class DistinctSequencesTest {
     public void should_return_Three_given_Rabbbit_and_Rabbit() {
         givenACountDistinctSubsequences();
 
-        String sourceString = "rabbbit";
-        String targetString = "rabbit";
+        Sequence sourceString = new Sequence("rabbbit");
+        Sequence targetString = new Sequence("rabbit");
 
         int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
 
@@ -62,8 +63,8 @@ public class DistinctSequencesTest {
     public void should_return_five_given_babgbag_and_bag() {
         givenACountDistinctSubsequences();
 
-        String sourceString = "babgbag";
-        String targetString = "bag";
+        Sequence sourceString = new Sequence("babgbag");
+        Sequence targetString = new Sequence("bag");
 
         int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
 
@@ -75,10 +76,10 @@ public class DistinctSequencesTest {
 
         givenACountDistinctSubsequences();
 
-        String sourceString = "LOGINFAILURELOGINSUCCESS";
-        String targetString = "LOGINFAILURE";
+        Sequence sourceString = new Sequence("LOGINFAILURELOGINSUCCESS");
+        Sequence targetString = new Sequence("LOGINFAILURE");
 
-        int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
+        int result = whenCountDistinctSubsequencesWith(sourceString, targetString);
 
         thenTheNumberOfSubsequencesIs(2, result);
     }
@@ -87,7 +88,7 @@ public class DistinctSequencesTest {
         countDistinctSubsequences = new CountDistinctSubsequences();
     }
 
-    private int whenCountDistinctSubsequencesWith(String S, String T) {
+    private int whenCountDistinctSubsequencesWith(Sequence S, Sequence T) {
         return this.countDistinctSubsequences.invoke(S, T);
     }
 
