@@ -1,14 +1,16 @@
 package DistinctSubsequencesAppGate.distinctSubsequencesAppGate;
 
 import DistinctSubsequencesAppGate.application.CountDistinctSubsequences;
+import DistinctSubsequencesAppGate.domain.IsNullSource;
+import DistinctSubsequencesAppGate.domain.IsNullTarget;
 import DistinctSubsequencesAppGate.domain.Sequence;
 import DistinctSubsequencesAppGate.infraestructure.DistinctSubsequencesServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DistinctSequencesTest {
-
     private CountDistinctSubsequences countDistinctSubsequences;
 
     @Test
@@ -86,6 +88,31 @@ public class DistinctSequencesTest {
         thenTheNumberOfSubsequencesIs(2, result);
     }
 
+    @Test
+    public void should_Throw_Exception_when_Source_is_null() {
+
+        givenACountDistinctSubsequences();
+        Sequence sourceString = null;
+        Sequence targetString = new Sequence("LOGINFAILURE");
+
+        assertThrows(IsNullSource.class, () -> {
+            whenCountDistinctSubsequencesWith(sourceString, targetString);
+        }, "is null source");
+    }
+
+    @Test
+    public void should_Throw_Exception_when_target_is_null() {
+
+        givenACountDistinctSubsequences();
+        Sequence sourceString = new Sequence("LOGINFAILURELOGINSUCCESS");
+        Sequence targetString = null;
+
+        assertThrows(IsNullTarget.class, () -> {
+            whenCountDistinctSubsequencesWith(sourceString, targetString);
+        }, "Is null target");
+    }
+
+
     private void givenACountDistinctSubsequences() {
         countDistinctSubsequences = new CountDistinctSubsequences(new DistinctSubsequencesServiceImpl());
     }
@@ -97,5 +124,4 @@ public class DistinctSequencesTest {
     private static void thenTheNumberOfSubsequencesIs(int subsequences, int result) {
         assertEquals(subsequences, result);
     }
-
 }
