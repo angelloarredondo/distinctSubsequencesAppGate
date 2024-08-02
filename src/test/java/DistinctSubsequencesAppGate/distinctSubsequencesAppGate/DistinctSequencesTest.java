@@ -2,11 +2,13 @@ package DistinctSubsequencesAppGate.distinctSubsequencesAppGate;
 
 import DistinctSubsequencesAppGate.application.CountDistinctSubsequences;
 import DistinctSubsequencesAppGate.domain.Sequence;
+import DistinctSubsequencesAppGate.infraestructure.DistinctSubsequencesServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DistinctSequencesTest {
+
     private CountDistinctSubsequences countDistinctSubsequences;
 
     @Test
@@ -85,7 +87,7 @@ public class DistinctSequencesTest {
     }
 
     private void givenACountDistinctSubsequences() {
-        countDistinctSubsequences = new CountDistinctSubsequences();
+        countDistinctSubsequences = new CountDistinctSubsequences(new DistinctSubsequencesServiceImpl());
     }
 
     private int whenCountDistinctSubsequencesWith(Sequence S, Sequence T) {
