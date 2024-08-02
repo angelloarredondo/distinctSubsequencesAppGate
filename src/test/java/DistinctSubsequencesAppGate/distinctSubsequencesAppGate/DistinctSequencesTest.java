@@ -60,6 +60,17 @@ public class DistinctSequencesTest {
 
     }
 
+    @Test
+    public void should_return_five_given_babgbag_and_bag() {
+        givenACountDistinctSubsequences();
+
+        String sourceString = "babgbag";
+        String targetString = "bag";
+
+        int result = whenCountDistinctSubsequencesWith( sourceString, targetString);
+
+        assertEquals(5, result);
+    }
 
     private void givenACountDistinctSubsequences() {
         countDistinctSubsequences = new CountDistinctSubsequences();
@@ -72,4 +83,5 @@ public class DistinctSequencesTest {
     private static void thenTheNumberOfSubsequencesIs(int subsequences, int result) {
         assertEquals(subsequences, result);
     }
+
 }
